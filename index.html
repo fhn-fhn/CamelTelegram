@@ -111,7 +111,7 @@
           progressBarFull.style.width = 100 * progress + "%";
               }).then((unityInstance) => {
                 MyGameInstance = unityInstance;
-                MyGameInstance.SendMessage("UIController", "SetUSerId", first_name);
+                MyGameInstance.SendMessage("Canvas", "SetUSerId", first_name);
                 loadingBar.style.display = "none";
                 fullscreenButton.onclick = () => {
                   unityInstance.SetFullscreen(1);
