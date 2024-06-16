@@ -105,7 +105,13 @@
       var tg_bot = window.Telegram.WebApp;
       var first_name = tg_bot.initDataUnsafe.user.first_name;
       var coinValue;
-      tg_bot.CloudStorage.getItem('777').then((value) => coinValue = value);
+      tg_bot.CloudStorage.getItem('777', (error, value) => {
+        if (error) {
+          console.error('Error getting value from CloudStorage:', error);
+        } else {
+          coinValue = value;
+        }
+      });
       var script = document.createElement("script");
       script.src = loaderUrl;
       script.onload = () => {
