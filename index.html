@@ -111,7 +111,7 @@
           progressBarFull.style.width = 100 * progress + "%";
               }).then((unityInstance) => {
                 MyGameInstance = unityInstance;
-                MyGameInstance.SendMessage("Condom", "SetCon", first_name);
+                MyGameInstance.SendMessage("DataCatcher", "SetCon", first_name);
                 loadingBar.style.display = "none";
                 fullscreenButton.onclick = () => {
                   unityInstance.SetFullscreen(1);
