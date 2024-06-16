@@ -104,6 +104,8 @@
       var MyGameInstance = null;
       var tg_bot = window.Telegram.WebApp;
       var first_name = tg_bot.initDataUnsafe.user.first_name;
+      var coinValue;
+      tg_bot.CloudStorage.getItem('777').then((value) => coinValue = value);
       var script = document.createElement("script");
       script.src = loaderUrl;
       script.onload = () => {
@@ -112,6 +114,7 @@
               }).then((unityInstance) => {
                 MyGameInstance = unityInstance;
                 MyGameInstance.SendMessage("DataCatcher", "SetCon", first_name);
+                MyGameInstance.SendMessage("DataCatcher", "SetCloudCoins", coinValue);
                 loadingBar.style.display = "none";
                 fullscreenButton.onclick = () => {
                   unityInstance.SetFullscreen(1);
