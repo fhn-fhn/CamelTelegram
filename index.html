@@ -103,14 +103,22 @@
 
       var MyGameInstance = null;
       var tg_bot = window.Telegram.WebApp;
-      var first_name = tg_bot.initDataUnsafe.user.first_name;
       var coinValue;
-      tg_bot.CloudStorage.getItem('777', (error, value) => {
+      tg_bot.CloudStorage.getItem('Coins', (error, value) => {
         if (error) {
           console.error('Error getting value from CloudStorage:', error);
         } else {
           console.log(value);
           coinValue = value;
+        }
+      });
+      var camelDatas;
+      tg_bot.CloudStorage.getItem('CamelData', (error, value) => {
+        if (error) {
+          console.error('Error getting value from CloudStorage:', error);
+        } else {
+          console.log(value);
+          camelDatas = value;
         }
       });
       var script = document.createElement("script");
@@ -120,9 +128,10 @@
           progressBarFull.style.width = 100 * progress + "%";
               }).then((unityInstance) => {
                 MyGameInstance = unityInstance;
-                MyGameInstance.SendMessage("DataCatcher", "SetCon", first_name);
-                MyGameInstance.SendMessage("DataCatcher", "SetCloudCoins", coinValue);
+                MyGameInstance.SendMessage("TG", "SetCloudCoins", coinValue);
+                MyGameInstance.SendMessage("TG", "SetCamelData", camelDatas);
                 loadingBar.style.display = "none";
+                unityInstance.SetFullscreen(1);
                 fullscreenButton.onclick = () => {
                   unityInstance.SetFullscreen(1);
                 };
