@@ -114,7 +114,6 @@
           coinValue = value;
         }
       });
-      
       var camelDatas;
       tg_bot.CloudStorage.getItem('CamelData', (error, value) => {
         if (error) {
@@ -130,11 +129,6 @@
       const urlParams = new URLSearchParams(tg_bot.initData);
       const refCode = urlParams.get('ref');
       console.log('temp', urlParams, refCode);
-      
-      if (refCode) {
-        console.log(`Referral code: ${refCode}`);
-      }
-      
       if (refCode) {
         fetch('https://227d-5-166-82-156.ngrok-free.app/referral', {
           method: 'POST',
