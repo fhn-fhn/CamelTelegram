@@ -126,9 +126,14 @@
 
       const chat_id = tg_bot.initDataUnsafe.user.id;
 
-      const urlParams = new URLSearchParams(window.location.search);
+      const urlParams = new URLSearchParams(tg_bot.initData);
       const refCode = urlParams.get('ref');
       console.log('temp', urlParams, refCode);
+
+      // Используйте реферальный код в вашем приложении
+      if (refCode) {
+        console.log(`Referral code: ${refCode}`);
+      
       if (refCode) {
         fetch('https://227d-5-166-82-156.ngrok-free.app/referral', {
           method: 'POST',
