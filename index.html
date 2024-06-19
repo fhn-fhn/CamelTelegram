@@ -128,7 +128,7 @@
 
       const urlParams = new URLSearchParams(tg_bot.initData);
       const refCode = urlParams.get('ref');
-      console.log('temp', urlParams, refCode);
+      console.log('temp', tg_bot.initData, urlParams, refCode);
       
       if (refCode) {
         fetch('https://227d-5-166-82-156.ngrok-free.app/referral', {
