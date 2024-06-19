@@ -32,7 +32,7 @@
       const userId = window.Telegram.WebApp.initDataUnsafe.user.id;
 
       if (refCode) {
-        fetch('http://5.166.82.156:4001/referral', {
+        fetch('https://227d-5-166-82-156.ngrok-free.app/referral', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -45,7 +45,7 @@
       }
 
       // Notify the server that the app has been opened
-      fetch('http://5.166.82.156:4001/app_opened', {
+      fetch('https://227d-5-166-82-156.ngrok-free.app/app_opened', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -156,7 +156,7 @@
 
       const chat_id = tg_bot.initDataUnsafe.user.id;
 
-      fetch('http://5.166.82.156:4001', {
+      fetch('https://227d-5-166-82-156.ngrok-free.app', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
