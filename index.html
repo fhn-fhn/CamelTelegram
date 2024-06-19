@@ -24,38 +24,8 @@
         <div id="unity-build-title">CamelRush1</div>
       </div>
     </div>
-    <script>
-      window.Telegram.WebApp.ready();
 
-      const urlParams = new URLSearchParams(window.location.search);
-      const refCode = urlParams.get('ref');
-      const userId = window.Telegram.WebApp.initDataUnsafe.user.id;
-
-      if (refCode) {
-        fetch('https://227d-5-166-82-156.ngrok-free.app/referral', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ refCode: refCode, userId: userId }),
-        })
-                .then(response => response.text())
-                .then(result => console.log(result))
-                .catch(error => console.log('error', error));
-      }
-
-      // Notify the server that the app has been opened
-      fetch('https://227d-5-166-82-156.ngrok-free.app/app_opened', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ userId: userId }),
-      })
-              .then(response => response.text())
-              .then(result => console.log(result))
-              .catch(error => console.log('error', error));
-    </script>
+     
     <script>
 
       var container = document.querySelector("#unity-container");
@@ -156,16 +126,34 @@
 
       const chat_id = tg_bot.initDataUnsafe.user.id;
 
-      fetch('https://227d-5-166-82-156.ngrok-free.app', {
+      const urlParams = new URLSearchParams(window.location.search);
+      const refCode = urlParams.get('ref');
+
+      if (refCode) {
+        fetch('https://227d-5-166-82-156.ngrok-free.app/referral', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ refCode: refCode, userId: chat_id }),
+        })
+                .then(response => response.text())
+                .then(result => console.log(result))
+                .catch(error => console.log('error', error));
+      }
+
+      // Notify the server that the app has been opened
+      fetch('https://227d-5-166-82-156.ngrok-free.app/app_opened', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ action: 'running', chat_id: chat_id }),
+        body: JSON.stringify({ userId: chat_id }),
       })
               .then(response => response.text())
               .then(result => console.log(result))
               .catch(error => console.log('error', error));
+
       
       var script = document.createElement("script");
       script.src = loaderUrl;
