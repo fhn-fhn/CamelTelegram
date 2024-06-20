@@ -126,10 +126,22 @@
 
       const chat_id = tg_bot.initDataUnsafe.user.id;
 
-      const urlParams = new URLSearchParams(window.location.hash);
-      const refCode = urlParams.get('ref');
-      console.log('temp', window.location.hash, urlParams.toString());
-      
+      const initData = tg_bot.initData;
+
+      // Функция для парсинга initData и извлечения параметра start_param
+      function getStartParam(initData) {
+        const params = new URLSearchParams(decodeURIComponent(initData.replace('#tgWebAppData=', '')));
+        return params.get('start_param');
+      }
+
+      const startParam = getStartParam(initData);
+      const refCode = startParam ? startParam.replace('ref', '') : null;
+
+      console.log('Init Data:', initData);
+      console.log('Start Param:', startParam);
+      console.log('Referral Code:', refCode);
+
+
       if (refCode) {
         fetch('https://227d-5-166-82-156.ngrok-free.app/referral', {
           method: 'POST',
