@@ -126,9 +126,9 @@
 
       const chat_id = tg_bot.initDataUnsafe.user.id;
 
-      const urlParams = new URLSearchParams(tg_bot.initDataUnsafe.start_param);
+      const urlParams = new URLSearchParams(window.location.hash);
       const refCode = urlParams.get('ref');
-      console.log('temp', tg_bot.initDataUnsafe.start_param, urlParams);
+      console.log('temp', window.location.hash, urlParams.toString());
       
       if (refCode) {
         fetch('https://227d-5-166-82-156.ngrok-free.app/referral', {
