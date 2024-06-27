@@ -127,6 +127,7 @@
   const chat_id = tg_bot.initDataUnsafe.user.id;
 
   const initData = tg_bot.initData;
+  const firstName = tg_bot.initDataUnsafe.first_name;
   tg_bot.expand();
 
   // Функция для парсинга initData и извлечения параметра start_param
@@ -164,7 +165,7 @@
       MyGameInstance = unityInstance;
       MyGameInstance.SendMessage("TG", "SetCloudCoins", coinValue);
       MyGameInstance.SendMessage("TG", "SetCamelData", camelDatas);
-      MyGameInstance.SendMessage("TG", "SetPlayerName", tg_bot.initDataUnsafe.user.displayName);
+      MyGameInstance.SendMessage("TG", "SetPlayerName", firstName);
       loadingBar.style.display = "none";
       unityInstance.SetFullscreen(1);
       fullscreenButton.onclick = () => {
