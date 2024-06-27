@@ -127,7 +127,7 @@
   const chat_id = tg_bot.initDataUnsafe.user.id;
 
   const initData = tg_bot.initData;
-  const firstName = tg_bot.initDataUnsafe.first_name;
+  let firstName = tg_bot.initDataUnsafe.user.first_name;
   tg_bot.expand();
 
   // Функция для парсинга initData и извлечения параметра start_param
