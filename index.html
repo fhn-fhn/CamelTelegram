@@ -149,7 +149,7 @@
       progressBarFull.style.width = 100 * progress + "%";
     }).then((unityInstance) => {
       MyGameInstance = unityInstance;
-      MyGameInstance.SendMessage("TG", "SetUserId", chat_id.toString());
+      MyGameInstance.SendMessage("TG", "SetUserId", chat_id);
       MyGameInstance.SendMessage("TG", "SetRefLink", refCode);
       MyGameInstance.SendMessage("TG", "SetSavedRefCount", refCount);
       MyGameInstance.SendMessage("TG", "SetCamelData", camelDatas);
