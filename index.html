@@ -107,12 +107,22 @@
   var tg_bot = window.Telegram.WebApp;
   var coinValue;
   var camelDatas;
+  var refCount;
   tg_bot.CloudStorage.getItem('CamelData', (error, value) => {
     if (error) {
       console.error('Error getting value from CloudStorage:', error);
     } else {
       console.log(value);
       camelDatas = value;
+    }
+  });
+
+  tg_bot.CloudStorage.getItem('RefCount', (error, value) => {
+    if (error) {
+      console.error('Error getting value from CloudStorage:', error);
+    } else {
+      console.log(value);
+      refCount = value;
     }
   });
 
@@ -129,7 +139,7 @@
   }
 
   const startParam = getStartParam(initData);
-  const refCode = startParam;
+  const refCode = startParam ? startParam : "";
   
 
   var script = document.createElement("script");
@@ -141,6 +151,7 @@
       MyGameInstance = unityInstance;
       MyGameInstance.SendMessage("TG", "SetUserId", chat_id);
       MyGameInstance.SendMessage("TG", "SetRefLink", refCode);
+      MyGameInstance.SendMessage("TG", "SetSavedRefCount", refCount);
       MyGameInstance.SendMessage("TG", "SetCamelData", camelDatas);
       MyGameInstance.SendMessage("TG", "SetPlayerName", firstName);
       loadingBar.style.display = "none";
