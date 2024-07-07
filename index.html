@@ -106,14 +106,6 @@
   var MyGameInstance = null;
   var tg_bot = window.Telegram.WebApp;
   var coinValue;
-  tg_bot.CloudStorage.getItem('Coins', (error, value) => {
-    if (error) {
-      console.error('Error getting value from CloudStorage:', error);
-    } else {
-      console.log(value);
-      coinValue = value;
-    }
-  });
   var camelDatas;
   tg_bot.CloudStorage.getItem('CamelData', (error, value) => {
     if (error) {
@@ -137,24 +129,8 @@
   }
 
   const startParam = getStartParam(initData);
-  const refCode = startParam ? startParam.replace('ref', '') : null;
-
-  console.log('Init Data:', initData);
-  console.log('Start Param:', startParam);
-  console.log('Referral Code:', refCode);
-
-  if (refCode) {
-    fetch('https://227d-5-166-82-156.ngrok-free.app/referral', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ refCode: refCode, userId: chat_id }),
-    })
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));
-  }
+  const refCode = startParam;
+  
 
   var script = document.createElement("script");
   script.src = loaderUrl;
@@ -163,7 +139,8 @@
       progressBarFull.style.width = 100 * progress + "%";
     }).then((unityInstance) => {
       MyGameInstance = unityInstance;
-      MyGameInstance.SendMessage("TG", "SetCloudCoins", coinValue);
+      MyGameInstance.SendMessage("TG", "SetUserId", chat_id);
+      MyGameInstance.SendMessage("TG", "SetRefLink", refCode);
       MyGameInstance.SendMessage("TG", "SetCamelData", camelDatas);
       MyGameInstance.SendMessage("TG", "SetPlayerName", firstName);
       loadingBar.style.display = "none";
